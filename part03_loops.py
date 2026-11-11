@@ -17,15 +17,23 @@ def check_pin(pin_inputs: list[str], correct_pin: str = "4321") -> str:
 
 
 def guessing_game() -> None:
-    secret = random.randint(1, 50)
-    guesses = 0
     while True:
-        guess = int(input("Guess (1-50): "))
-        guesses += 1
-        if guess == secret:
-            print(f"Got it in {guesses} guesses!")
+        secret = random.randint(1, 50)
+        guesses = 0
+        while True:
+            guess = int(input("Guess (1-50): "))
+            guesses += 1
+            if guess == secret:
+                print(f"Got it in {guesses} guesses!")
+                break
+            print("Too high" if guess > secret else "Too low")
+        if input("Play again? (y/n) ").lower() != "y":
             return
-        print("Too high" if guess > secret else "Too low")
+
+
+def extra_practice() -> tuple[list[str], int]:
+    triangle = ["*" * size for size in range(1, 6)]
+    return triangle, sum(number for number in range(1, 101) if number % 2 == 0)
 
 
 def main() -> None:

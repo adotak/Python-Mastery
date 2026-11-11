@@ -24,6 +24,14 @@ def save_results(results: dict[str, list[int]], csv_path: Path, json_path: Path)
     json_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
 
 
+def csv_topper(csv_path: Path) -> str:
+    with csv_path.open(newline="", encoding="utf-8") as file:
+        rows = list(csv.DictReader(file))
+    if not rows:
+        raise ValueError("No results found")
+    return max(rows, key=lambda row: float(row["average"]))["name"]
+
+
 def diary(note: str, path: Path = Path("diary.txt")) -> None:
     with path.open("a", encoding="utf-8") as file:
         file.write(f"{datetime.date.today()}: {note}\n")

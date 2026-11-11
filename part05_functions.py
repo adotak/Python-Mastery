@@ -40,9 +40,19 @@ def report(name: str, marks: Iterable[float]) -> str:
     return f"{name}: average {result:.1f}, grade {grade(result)}"
 
 
+def comprehension_examples() -> tuple[list[int], list[str], dict[str, float], dict[str, float]]:
+    marks = {"Ali": [80, 72, 91], "Sara": [95, 88, 90], "Hamza": [65, 70, 61]}
+    squares = [number * number for number in range(1, 11)]
+    long_names = [name for name in marks if len(name) > 4]
+    averages = {name: average(values) for name, values in marks.items()}
+    passing = {name: avg for name, avg in averages.items() if avg >= 33}
+    return squares, long_names, averages, passing
+
+
 def main() -> None:
     print([x * x for x in range(1, 11)])
     print([name for name in ["Ali", "Sara", "Hamza", "Ayesha"] if len(name) > 4])
+    print(comprehension_examples())
     print(report("Ali", [80, 72, 91]))
 
 

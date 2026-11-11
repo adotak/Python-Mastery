@@ -2,6 +2,10 @@
 """Variables, input and output examples."""
 
 
+def unit_converter(celsius: float, kilometres: float) -> tuple[float, float, float, float]:
+    return celsius * 9 / 5 + 32, celsius + 273.15, kilometres * 0.621371, kilometres * 1000
+
+
 def main() -> None:
     name = input("Name: ")
     age = int(input("Age: "))
@@ -25,6 +29,10 @@ def main() -> None:
     print(f"Tax: Rs {tax:.2f}")
     print(f"Total: Rs {subtotal - discount + tax:.2f}")
     print(f"{item}: {quantity}")
+    celsius = float(input("\nCelsius: "))
+    kilometres = float(input("Kilometres: "))
+    fahrenheit, kelvin, miles, metres = unit_converter(celsius, kilometres)
+    print(f"Fahrenheit: {fahrenheit:.1f}, Kelvin: {kelvin:.1f}, Miles: {miles:.1f}, Metres: {metres:.1f}")
 
 
 if __name__ == "__main__":
